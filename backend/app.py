@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
-
+from flask_cors import CORS 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/submit', methods=['POST'])
 def submit_code():
@@ -15,4 +16,5 @@ def judge_code(code):
     return {"status": "success", "output": "Sample output"}
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
+

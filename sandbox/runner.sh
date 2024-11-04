@@ -1,9 +1,8 @@
 #!/bin/bash
-
-# code.pyはバックエンドからマウントされる予定の提出コードファイル
-if [ -f "code.py" ]; then
-  # 実行して結果を標準出力
-  python3 code.py
+CODE_PATH=/sandbox/code/code.py
+if [ -f "$CODE_PATH" ]; then
+    python3 "$CODE_PATH"
 else
-  echo "Error: code.py not found."
+    echo "Error: code.py not found."
 fi
+
