@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Submission</title>
+</head>
+<body>
+    <h1>Submit Your Code</h1>
+    <form action="/submit" method="post">
+        <label for="code">Code:</label><br>
+        <textarea id="code" name="code" rows="10" cols="30"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="result"></div>
+<script>
+    document.querySelector("form").onsubmit = async function(event) {
+        event.preventDefault();
+        let formData = new FormData(event.target);
+        let response = await fetch("/submit", {
+            method: "POST",
+            body: formData
+        });
+        let result = await response.json();
+        document.getElementById("result").textContent = `Status: ${result.status}, Output: ${result.output}`;
+    }
+</script>
+
+</body>
+</html>

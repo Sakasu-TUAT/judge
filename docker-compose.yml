@@ -1,0 +1,28 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./backend  # バックエンドのDockerfileがあるディレクトリ
+    ports:
+      - "5000:5000"  # 必要に応じてポートを変更
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend  # フロントエンドのDockerfileがあるディレクトリ
+    ports:
+      - "3000:3000"  # 必要に応じてポートを変更
+    networks:
+      - app-network
+
+  sandbox:
+    build:
+      context: ./sandbox  # サンドボックス環境のDockerfileがあるディレクトリ
+    networks:
+      - app-network
+    # サンドボックスはバックエンドのみがアクセスする設定にする
+
+networks:
+  app-network:
+    driver: bridge
